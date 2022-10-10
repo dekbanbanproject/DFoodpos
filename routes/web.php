@@ -16,14 +16,22 @@ use Illuminate\Support\Facades\Auth;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+// Route::get('/', function () {
+//     if (Auth::check()) {       
+//         return view('auth.login');
+//     }else{
+//         return view('welcome');
+//     }
+// })->name('index');
 
 Auth::routes();
 
 Route::get('/', function () {
     if (Auth::check()) {
-        return view('welcome');
-    }else{
         return view('auth.login');
+    }else{
+      
+        return view('welcome');
     }
 })->name('index');
 
