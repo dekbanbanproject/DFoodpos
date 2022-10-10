@@ -18,6 +18,10 @@
     {{-- <link rel="stylesheet" href="{{ asset('css/styledis.css') }}" /> --}}
     <link rel="stylesheet" href="{{ asset('bt52/css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('bt52/js/bootstrap.bundle.min.js') }}" />
+    <link href="{{ asset('apkclaim//libs/select2/css/select2.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('apkclaim//libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('apkclaim//libs/spectrum-colorpicker2/spectrum.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('apkclaim//libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css') }}" rel="stylesheet">
     <!-- Scripts -->
     {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
 
@@ -95,11 +99,16 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-2">
-                <div class="card-body  shadow ">
-                    <div class="col-12 col-md-12 col-xl-12 mt-3">                         
+            <div class="col-md-2 mt-3">
+                <div class="card-body shadow p-5">
+                    <a href="{{ url('home') }}" class="nav-link text-dark text-center"> 
+                        <i class="fa-solid fa-3x fa-tv text-danger"></i>
+                        {{-- <br>
+                        <label for="" class="mt-2">ว่าง</label> --}}
+                    </a>
+                    {{-- <div class="col-12 col-md-12 col-xl-12 mt-3">                          --}}
                             {{-- <img src="..." class="img-thumbnail mb-3" alt="..."> --}}                      
-                    </div>
+                    {{-- </div> --}}
                 </div>
             </div>
             <div class="col-md-5">
@@ -173,6 +182,7 @@
                 </div>
             </div>
         </div>
+
         <div class="row">
             <div class="col-md-5">
                 {{-- <div class="card-body">
@@ -422,6 +432,7 @@
                 </div>             
             </div>
         </div>
+
         <div class="row">
             <div class="col-md-4"> 
                 <div class="row mb-3 justify-content-center">
@@ -513,11 +524,16 @@
                     <div class="row justify-content-center">
                         <div class="col-6 col-md-12 col-xl-12 mt-3">
                             <div class="card-body shadow">
-                                <a href="{{ url('home') }}" class="nav-link text-dark text-center">
+                                {{-- <button type="button" class="btn btn-light text-dark text-center" data-bs-toggle="modal" data-bs-target="#vipModal">
                                     <i class="fa-solid fa-3x fa-v text-primary"></i><i class="fa-solid fa-3x fa-i text-warning"></i><i class="fa-solid fa-3x fa-p text-success"></i>
                                     <br>
                                     <label for="" class="mt-2">ว่าง</label>
-                                </a>
+                                </button> --}}
+                                <button type="button"class="btn btn-light text-dark text-center edit_data"  >
+                                    <i class="fa-solid fa-3x fa-v text-primary"></i><i class="fa-solid fa-3x fa-i text-warning"></i><i class="fa-solid fa-3x fa-p text-success"></i>
+                                    <br>
+                                    <label for="" style="font-size:13px;color: rgb(255, 185, 34)">ว่าง</label>
+                                </button>
                             </div>
                         </div> 
                     </div> 
@@ -525,10 +541,157 @@
             </div>
         </div>
     </div>
+<!-- Button trigger modal -->
+{{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Launch demo modal
+</button> --}}
 
+<!-- Modal -->
+<div class="modal fade" id="vipModal" tabindex="-1" aria-labelledby="vipModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="vipModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <hr>
+  <h2 class="fs-5">Tooltips in a modal</h2>
+  <p><a href="#" data-bs-toggle="tooltip" title="Tooltip">This link</a> and <a href="#" data-bs-toggle="tooltip" title="Tooltip">that link</a> have tooltips on hover.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
+    
+    <script src="{{ asset('apkclaim/libs/jquery/jquery.min.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('bt52/js/bootstrap.min.js') }}" />
+    <script src="{{ asset('apkclaim/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('apkclaim/libs/metismenu/metisMenu.min.js') }}"></script>
+    <script src="{{ asset('apkclaim/libs/simplebar/simplebar.min.js') }}"></script>
+    <script src="{{ asset('apkclaim/libs/node-waves/waves.min.js') }}"></script>
 
+    <script src="{{ asset('apkclaim/libs/select2/js/select2.min.js') }}"></script>
+    <script src="{{ asset('apkclaim/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
+    <script src="{{ asset('apkclaim/libs/spectrum-colorpicker2/spectrum.min.js') }}"></script>
+    <script src="{{ asset('apkclaim/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js') }}"></script>
+    <script src="{{ asset('apkclaim/libs/admin-resources/bootstrap-filestyle/bootstrap-filestyle.min.js') }}"></script>
+    <script src="{{ asset('apkclaim/libs/bootstrap-maxlength/bootstrap-maxlength.min.js') }}"></script>
+        <script> 
+            $(document).ready(function() {
+                // $('#example').DataTable(); 
+
+                $('select').select2();
+                $('#ECLAIM_STATUS').select2({
+                    dropdownParent: $('#detailclaim')
+                });
+
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
+                // $('#saveBtn').click(function() {
+
+                //     var plan_type_name = $('#plan_type_name').val();
+                //     // alert(plan_type_name);
+                //     $.ajax({
+                //         url: "",
+                //         type: "POST",
+                //         dataType: 'json',
+                //         data: {
+                //             plan_type_name
+                //         },
+                //         success: function(data) {
+                //             if (data.status == 200) {
+                //                 // alert('gggggg');
+                //                 Swal.fire({
+                //                     title: 'บันทึกข้อมูลสำเร็จ',
+                //                     text: "You Insert data success",
+                //                     icon: 'success',
+                //                     showCancelButton: false,
+                //                     confirmButtonColor: '#06D177',
+                //                     confirmButtonText: 'เรียบร้อย'
+                //                 }).then((result) => {
+                //                     if (result
+                //                         .isConfirmed) {
+                //                         console.log(
+                //                             data);
+
+                //                         window.location
+                //                             .reload();
+                //                     }
+                //                 })
+                //             } else {
+
+                //             }
+
+                //         },
+                //     });
+                // });
+
+                $(document).on('click', '.edit_data', function() {
+                    var plan_type_id = $(this).val();
+                    // alert(plan_type_id);
+                    $('#vipModal').modal('show');
+                    $.ajax({
+                        type: "GET",
+                        // url: "" + '/' + plan_type_id,
+                        success: function(data) {
+                            console.log(data.type.plan_type_name);
+                            // $('#editplan_type_name').val(data.type.plan_type_name)
+                            // $('#editplan_type_id').val(data.type.plan_type_id)
+                        },
+                    });
+                });
+                
+                // $('#updateBtn').click(function() {
+                //     var plan_type_id = $('#editplan_type_id').val();
+                //     var plan_type_name = $('#editplan_type_name').val();
+                //     $.ajax({
+                //         url: "",
+                //         type: "POST",
+                //         dataType: 'json',
+                //         data: {
+                //             plan_type_id,
+                //             plan_type_name
+                //         },
+                //         success: function(data) {
+                //             if (data.status == 200) {
+                //                 Swal.fire({
+                //                     title: 'แก้ไขข้อมูลสำเร็จ',
+                //                     text: "You edit data success",
+                //                     icon: 'success',
+                //                     showCancelButton: false,
+                //                     confirmButtonColor: '#06D177',
+                //                     confirmButtonText: 'เรียบร้อย'
+                //                 }).then((result) => {
+                //                     if (result
+                //                         .isConfirmed) {
+                //                         console.log(
+                //                             data);
+
+                //                         window.location
+                //                             .reload();
+                //                     }
+                //                 })
+                //             } else {
+
+                //             }
+
+                //         },
+                //     });
+                // });
+                              
+            });
+           
+        </script>    
+    
 
 </body>
 
